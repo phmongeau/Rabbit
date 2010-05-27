@@ -1,12 +1,5 @@
 package
 {
-    import flash.events.Event;
-    import flash.net.URLLoader;
-    import flash.net.URLRequest;
-    
-//    import net.pixelpracht.tmx.TmxMap;
-//    import net.pixelpracht.tmx.TmxObject;
-//    import net.pixelpracht.tmx.TmxObjectGroup;
     import net.pixelpracht.tmx.*;
 
     import org.flixel.*;
@@ -17,6 +10,8 @@ package
         [Embed(source = 'data/map01.tmx', mimeType = "application/octet-stream")] private var EmbeddedTmx:Class;
 
         private var _map:FlxTilemap;
+        public var veggies:FlxGroup;
+        public var _player:FlxSprite;
         
         override public function create():void
         {
@@ -33,6 +28,12 @@ package
             parseObjects(tmx);
 
             add(_map);
+        }
+
+        override public function update():void
+        {
+            FlxU.collide(_player, _map);
+            super.update();
         }
 
         private function toCSV(tmx:TmxMap):String
@@ -54,7 +55,8 @@ package
             switch(obj.type)
             {
                 case "Player":
-                    add(new Player(obj.x, obj.y));
+                    _player = new Player(obj.x, obj.y);
+                    add(_player);
                     return;
                 case "Carrot":
                     add(new Carrot(obj.x, obj.y));

@@ -16,6 +16,7 @@ package
 			moveSpeed =  200;
 			drag.x = 200;
 			maxVelocity.x = 700;
+            velocity.y = 100;
 			
 		}
 		
