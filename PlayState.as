@@ -17,7 +17,7 @@ package
         [Embed(source = 'data/map01.tmx', mimeType = "application/octet-stream")] private var EmbeddedTmx:Class;
 
         private var _map:FlxTilemap;
-
+        
         override public function create():void
         {
             FlxG.mouse.hide();
@@ -29,6 +29,9 @@ package
             _map = new FlxTilemap();
             _map.loadMap(mapCsv, ImgTiles);
 
+            
+            parseObjects(tmx);
+
             add(_map);
         }
 
@@ -36,6 +39,27 @@ package
         {
             var mapCsv:String = tmx.getLayer('map').toCsv(tmx.getTileSet('tiles'));
             return mapCsv;
+        }
+
+        private function parseObjects(tmx:TmxMap):void
+        {
+            var group:TmxObjectGroup = tmx.getObjectGroup('objects');
+            for each(var object:TmxObject in group.objects)
+                spawnObject(object);
+        }
+
+        private function spawnObject(obj:TmxObject):void
+        {
+            //Add game objects based on the type property
+            switch(obj.type)
+            {
+                case "Player":
+                    add(new Player(obj.x, obj.y));
+                    return;
+                case "Carrot":
+                    add(new Carrot(obj.x, obj.y));
+                    return;
+            }
         }
 
     }

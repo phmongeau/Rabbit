@@ -2,15 +2,16 @@ package
 {
 	import org.flixel.*;
 	
-	public class PlayerShip extends FlxSprite
+	public class Player extends FlxSprite
 	{
-		[Embed(source = 'data/rabitS.png')] private var ImgPlayer:Class;
+		[Embed(source = 'data/rabitSS.png')] private var ImgPlayer:Class;
 		
 		private var moveSpeed:Number;
-		public function PlayerShip(X:int, Y:int):void
+
+		public function Player(X:int, Y:int):void
 		{
 			super(X, Y);
-			loadGraphic(ImgPlayer, false, true, 16, 16);
+			loadGraphic(ImgPlayer, false, true, 40, 67);
 			
 			moveSpeed =  200;
 			drag.x = 200;
