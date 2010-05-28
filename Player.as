@@ -7,16 +7,19 @@ package
 		[Embed(source = 'data/rabitSS.png')] private var ImgPlayer:Class;
 		
 		private var moveSpeed:Number;
+        public var jumpPower:int;
 
 		public function Player(X:int, Y:int):void
 		{
 			super(X, Y);
 			loadGraphic(ImgPlayer, false, true, 40, 67);
 			
-			moveSpeed =  200;
+			moveSpeed =  100;
 			drag.x = 200;
-			maxVelocity.x = 700;
-            velocity.y = 100;
+			maxVelocity.x = moveSpeed;
+            acceleration.y = 100;
+            jumpPower = 250;
+            maxVelocity.y = jumpPower * 10;
 			
 		}
 		
@@ -31,16 +34,20 @@ package
 			{
 				velocity.x += moveSpeed * FlxG.elapsed * 3;
 			}
+            if (FlxG.keys.justPressed("SPACE"))
+            {
+                velocity.y -= jumpPower;
+            }
 			
 			if (x < 0)
 			{
 				velocity.x *= -0.90;
 				x = 0;
 			}
-			else if (x > 234)
+			else if (x > 600)
 			{
 				velocity.x *= -0.90;
-				x = 234;
+				x = 600;
 			}
 			super.update();
 		}
