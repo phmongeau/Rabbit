@@ -17,7 +17,7 @@ package
 			moveSpeed =  100;
 			drag.x = 200;
 			maxVelocity.x = moveSpeed;
-            acceleration.y = 300;
+            acceleration.y = 350; //Gravity
             jumpPower = 250;
             maxVelocity.y = jumpPower * 10;
 			
@@ -38,6 +38,11 @@ package
             {
                 velocity.y -= jumpPower;
             }
+
+            if (velocity.x > 0)
+                facing = 1;
+            else if(velocity.x < 0)
+                facing = 0;
 			
 			if (x < 0)
 			{
