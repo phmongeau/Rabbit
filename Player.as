@@ -17,7 +17,7 @@ package
 			moveSpeed =  100;
 			drag.x = 200;
 			maxVelocity.x = moveSpeed;
-            acceleration.y = 100;
+            acceleration.y = 300;
             jumpPower = 250;
             maxVelocity.y = jumpPower * 10;
 			
