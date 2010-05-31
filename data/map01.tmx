@@ -17,6 +17,7 @@
   <object name="" type="Carrot" x="523" y="283"/>
   <object name="" type="Carrot" x="617" y="275"/>
   <object name="" type="Carrot" x="388" y="336"/>
+  <object name="" type="marmotte" x="357" y="358"/>
  </objectgroup>
  <layer name="collide" width="40" height="30">
   <data encoding="base64" compression="zlib">

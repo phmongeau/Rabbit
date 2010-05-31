@@ -11,7 +11,8 @@ package
 
         private var _map:FlxTilemap;
         private var _collideMap:FlxTilemap;
-        public var veggies:FlxGroup;
+        public var _veggies:FlxGroup;
+        public var _marmottes:FlxGroup;
         public var _player:FlxSprite;
         
         override public function create():void
@@ -19,7 +20,8 @@ package
             FlxG.mouse.hide();
             FlxState.bgColor = 0xFF88AACC;
 
-            veggies = new FlxGroup();
+            _veggies = new FlxGroup();
+            _marmottes = new FlxGroup();
 
             var tmx:TmxMap = new TmxMap(new XML( new EmbeddedTmx));
             var mapCsv:String = toCSV(tmx, "map");
@@ -40,7 +42,8 @@ package
         override public function update():void
         {
             FlxU.collide(_player, _collideMap);
-            FlxU.overlap(veggies, _player, gotCarrot);
+            FlxU.overlap(_veggies, _player, gotCarrot);
+            FlxU.overlap(_marmottes, _player, marmotteHitPlayer);
             super.update();
         }
 
@@ -67,7 +70,11 @@ package
                     add(_player);
                     return;
                 case "Carrot":
-                    add(veggies.add(new Carrot(obj.x, obj.y)));
+                    add(_veggies.add(new Carrot(obj.x, obj.y)));
+                    return;
+
+                case "marmotte":
+                    add(_marmottes.add(new Marmotte(obj.x, obj.y)));
                     return;
             }
         }
@@ -77,6 +84,13 @@ package
             c.kill();
             FlxG.score += 1;
             FlxG.log(FlxG.score.toString());
+        }
+
+        private function marmotteHitPlayer(m:Marmotte, p:Player):void
+        {
+            FlxG.log('overlap');
+            p.health -= 1;
+            p.hit();
         }
 
     }

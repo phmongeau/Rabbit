@@ -17,9 +17,10 @@ package
 			moveSpeed =  100;
 			drag.x = 200;
 			maxVelocity.x = moveSpeed;
-            acceleration.y = 350; //Gravity
-            jumpPower = 250;
+            acceleration.y = 500; //Gravity
+            jumpPower = 300;
             maxVelocity.y = jumpPower * 10;
+            health = 10;
 			
 		}
 		
@@ -34,7 +35,7 @@ package
 			{
 				velocity.x += moveSpeed * FlxG.elapsed * 3;
 			}
-            if (FlxG.keys.justPressed("SPACE"))
+            if (FlxG.keys.justPressed("SPACE") && velocity.y == 0)
             {
                 velocity.y -= jumpPower;
             }
@@ -56,6 +57,13 @@ package
 			}
 			super.update();
 		}
+
+        public function hit():void
+        {
+            FlxG.log('Player');
+            velocity.x *= -1;
+            velocity.y *= -1;
+       }
 	}
 }
 
