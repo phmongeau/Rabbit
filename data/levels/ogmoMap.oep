@@ -1,0 +1,20 @@
+<project>
+	<name>Example Project</name>
+	<settings>
+		<defaultWidth>640</defaultWidth>
+		<defaultHeight>480</defaultHeight>
+		<workingDirectory>../</workingDirectory>
+	</settings>
+	<tilesets>
+		<tileset name="tiles" image="tiles.png" tileWidth="16" tileHeight="16" />
+	</tilesets>
+	<objects>
+		<object name="rabbit" image="rabitSS.png" width="40" height="67" limit="1" />
+		<object name="carrot" image="carrot.png" width="12" height="30" />
+	</objects>
+	<layers>
+		<grid name="floors" gridSize="16" />
+		<objects name="actors" gridSize="16" />
+		<tiles name="tilesAbove" gridSize="16" exportTileSize="true" exportTileIDs="true" />
+	</layers>
+</project>
