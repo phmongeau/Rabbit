@@ -26,8 +26,8 @@ package
 			_marmottes = new FlxGroup();
 
 						
-			_map = new OgmoTilemap();
-			_map.loadOgmo(new Level1, ImgTiles)
+			_map = new OgmoTilemap(new Level1);
+			_map.loadTilemap(_map.xml.tilesAbove[0], ImgTiles)
 			
 			_collideMap = new FlxTilemap();
 			_collideMap.loadMap(new CollideMap1, CollideTiles, 16);

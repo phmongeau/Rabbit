@@ -6,29 +6,29 @@ package
 	{
 		public var xml:XML;
 		
-		public function OgmoTilemap():void
+		public function OgmoTilemap(File:String):void
 		{
 			super();
+			xml = new XML(File);
+			width = xml.width;
+			height = xml.height;			
 		}
 		
-		public function loadOgmo(File:String, TileGraphic:Class):FlxTilemap
+		public function loadTilemap(Layer:XML, TileGraphic:Class):FlxTilemap
 		{
 			//load graphics
 			_pixels = FlxG.addBitmap(TileGraphic);
 			
-			//figure out the map dimmesions based on the xml and set variables
-			xml = new XML(File);
+			var file:XML = Layer; //xml.tilesAbove[0];
 			
-			_tileWidth = xml.tilesAbove[0].@tileWidth;
-			_tileHeight = xml.tilesAbove[0].@tileHeight;
+			//figure out the map dimmesions based on the xml and set variables			
+			_tileWidth = file.@tileWidth;
+			_tileHeight = file.@tileHeight;
 			
-			widthInTiles = xml.width / _tileWidth;
-			heightInTiles = xml.height / _tileHeight;
+			widthInTiles = width / _tileWidth;
+			heightInTiles = height / _tileHeight;
 			
 			totalTiles = widthInTiles * heightInTiles;
-			
-			width = xml.width;
-			height = xml.height;
 			
 			_block.width = _tileWidth;
 			_block.height = _tileHeight;
@@ -45,7 +45,7 @@ package
 			
 			// Set tiles
 			var i:XML
-			for each (i in xml.tilesAbove[0].tile)
+			for each (i in file.tile)
 			{
 				this.setTile((i.@x / _tileWidth), (i.@y / _tileHeight), i.@id);
 			}
