@@ -11,8 +11,9 @@ package
 		[Embed(source = 'data/levels/Level1.oel', mimeType = "application/octet-stream")] private var Level1:Class;
 		[Embed(source = 'data/levels/CollideMap1.txt', mimeType = "application/octet-stream")] private var CollideMap1:Class;
 
-		private var _map:OgmoTilemap;
+		private var _level:OgmoTilemap;
 		private var _collideMap:FlxTilemap;
+		private var _map:FlxTilemap;
 		public var _veggies:FlxGroup;
 		public var _marmottes:FlxGroup;
 		public var _player:FlxSprite;
@@ -26,17 +27,17 @@ package
 			_marmottes = new FlxGroup();
 
 						
-			_map = new OgmoTilemap(new Level1);
-			var test:OgmoTilemap = _map.loadTilemap(_map.xml.tilesAbove[0], ImgTiles)
+			_level = new OgmoTilemap(new Level1);
+			var _map:FlxTilemap = _level.loadTilemap(_level.xml.tilesAbove[0], ImgTiles)
 			
 			_collideMap = new FlxTilemap();
 			_collideMap.loadMap(new CollideMap1, CollideTiles, 16);
 			_collideMap.drawIndex = 3;
 
-			parseObjects(_map);
+			parseObjects(_level);
 
 			add(_collideMap);
-			add(test);
+			add(_map);
 		}
 
 		override public function update():void
