@@ -4,6 +4,9 @@ package
 
 	public class OgmoTilemap extends FlxTilemap
 	{
+		[Embed(source="data/collidTiles.png")] private var InvisibleTiles:Class;
+		//[Embed(source="data/tiles.png")] private var ImgTiles:Class;
+
 		public var xml:XML;
 		
 		public function OgmoTilemap(File:String):void
@@ -19,7 +22,7 @@ package
 			//load graphics
 			_pixels = FlxG.addBitmap(TileGraphic);
 			
-			var file:XML = Layer; //xml.tilesAbove[0];
+			var file:XML = Layer;
 			
 			//figure out the map dimmesions based on the xml and set variables			
 			_tileWidth = file.@tileWidth;
@@ -61,6 +64,26 @@ package
 			refreshHulls();
 			
 			return this;
+		}
+		
+		public function loadGrid(Layer:XML):FlxTilemap
+		{
+
+			var data:String = Layer.toString();
+			var array:Array = new Array();
+			
+			//find the width in tiles:
+			var l:Array = data.split("\n");
+			var tmpString:String = ""
+			for each(var i:String in l)
+			{
+				tmpString += i;
+			}
+			
+			array = tmpString.split("");
+			data = arrayToCSV(array, 40);
+			FlxG.log(data);
+			return new FlxTilemap().loadMap(data, InvisibleTiles);
 		}
 	}
 }

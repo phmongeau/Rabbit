@@ -28,11 +28,12 @@ package
 
 						
 			_level = new OgmoTilemap(new Level1);
-			var _map:FlxTilemap = _level.loadTilemap(_level.xml.tilesAbove[0], ImgTiles)
+			_map = _level.loadTilemap(_level.xml.tilesAbove[0], ImgTiles)
 			
-			_collideMap = new FlxTilemap();
-			_collideMap.loadMap(new CollideMap1, CollideTiles, 16);
-			_collideMap.drawIndex = 3;
+//			_collideMap = new FlxTilemap();
+//			_collideMap.loadMap(new CollideMap1, CollideTiles, 16);
+//			_collideMap.drawIndex = 3;
+			_collideMap = _level.loadGrid(_level.xml.floors[0]);
 
 			parseObjects(_level);
 
