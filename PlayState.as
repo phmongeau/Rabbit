@@ -1,12 +1,12 @@
 package
 {
-	import net.pixelpracht.tmx.*;
 
 	import org.flixel.*;
 
 	public class PlayState extends FlxState
 	{
 		[Embed(source="data/tiles.png")] private var ImgTiles:Class;
+		[Embed(source="data/collidTiles.png")] private var CollideTiles:Class;
 		[Embed(source = 'data/map01.tmx', mimeType = "application/octet-stream")] private var EmbeddedTmx:Class;		
 		[Embed(source = 'data/levels/Level1.oel', mimeType = "application/octet-stream")] private var Level1:Class;
 		[Embed(source = 'data/levels/CollideMap1.txt', mimeType = "application/octet-stream")] private var CollideMap1:Class;
@@ -36,7 +36,8 @@ package
 //			var mapCsv:String = _map.xml.floors.text()
 //			FlxG.log(mapCsv);
 			_collideMap = new FlxTilemap();
-			_collideMap.loadMap(new CollideMap1, ImgTiles, 16);
+			_collideMap.loadMap(new CollideMap1, CollideTiles, 16);
+			_collideMap.drawIndex = 3;
 
 			parseObjects(_map);
 
@@ -46,7 +47,7 @@ package
 
 		override public function update():void
 		{
-			FlxU.collide(_player, _map);
+			FlxU.collide(_player, _collideMap);
 			FlxU.overlap(_veggies, _player, gotCarrot);
 			FlxU.overlap(_marmottes, _player, marmotteHitPlayer);
 			super.update();
@@ -66,25 +67,6 @@ package
 			for each(i in objects.carrot)
 			{
 				add(_veggies.add(new Carrot(i.@x, i.@y)));
-			}
-		}
-
-		private function spawnObject(obj:TmxObject):void
-		{
-			//Add game objects based on the type property
-			switch(obj.type)
-			{
-				case "Player":
-					_player = new Player(obj.x, obj.y);
-					add(_player);
-					return;
-				case "Carrot":
-					add(_veggies.add(new Carrot(obj.x, obj.y)));
-					return;
-
-				case "marmotte":
-					add(_marmottes.add(new Marmotte(obj.x, obj.y)));
-					return;
 			}
 		}
 

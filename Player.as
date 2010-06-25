@@ -21,7 +21,10 @@ package
             jumpPower = 300;
             maxVelocity.y = jumpPower * 10;
             health = 10;
-			
+            height = 52
+            width = 30
+			offset.x = 10;
+			offset.y = 15;
 		}
 		
 		override public function update():void
