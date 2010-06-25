@@ -25,16 +25,10 @@ package
 			_veggies = new FlxGroup();
 			_marmottes = new FlxGroup();
 
-			//var tmx:TmxMap = new TmxMap(new XML( new EmbeddedTmx));
-			//var mapCsv:String = toCSV(tmx, "map");
-			//_map = new FlxTilemap();
-			//_map.loadMap(mapCsv, ImgTiles);
 						
 			_map = new OgmoTilemap();
 			_map.loadOgmo(new Level1, ImgTiles)
 			
-//			var mapCsv:String = _map.xml.floors.text()
-//			FlxG.log(mapCsv);
 			_collideMap = new FlxTilemap();
 			_collideMap.loadMap(new CollideMap1, CollideTiles, 16);
 			_collideMap.drawIndex = 3;
