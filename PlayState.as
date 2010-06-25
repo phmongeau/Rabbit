@@ -27,7 +27,7 @@ package
 
 						
 			_map = new OgmoTilemap(new Level1);
-			_map.loadTilemap(_map.xml.tilesAbove[0], ImgTiles)
+			var test:OgmoTilemap = _map.loadTilemap(_map.xml.tilesAbove[0], ImgTiles)
 			
 			_collideMap = new FlxTilemap();
 			_collideMap.loadMap(new CollideMap1, CollideTiles, 16);
@@ -36,7 +36,7 @@ package
 			parseObjects(_map);
 
 			add(_collideMap);
-			add(_map);
+			add(test);
 		}
 
 		override public function update():void
