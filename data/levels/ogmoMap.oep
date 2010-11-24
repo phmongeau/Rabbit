@@ -3,7 +3,11 @@
 	<settings>
 		<defaultWidth>640</defaultWidth>
 		<defaultHeight>480</defaultHeight>
-		<workingDirectory>../</workingDirectory>
+		<minHeight>1</minHeight>
+		<maxHeight>100000</maxHeight>
+		<minWidth>1</minWidth>
+		<maxWidth>100000</maxWidth>
+	<workingDirectory>../</workingDirectory>
 	</settings>
 	<tilesets>
 		<tileset name="tiles" image="tiles.png" tileWidth="16" tileHeight="16" />

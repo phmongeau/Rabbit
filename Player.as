@@ -25,6 +25,7 @@ package
             width = 30
 			offset.x = 10;
 			offset.y = 15;
+            FlxG.follow(this);
 		}
 		
 		override public function update():void
@@ -53,7 +54,7 @@ package
 				velocity.x *= -0.90;
 				x = 0;
 			}
-			else if (x > 600)
+			else if (x > 10000)
 			{
 				velocity.x *= -0.90;
 				x = 600;

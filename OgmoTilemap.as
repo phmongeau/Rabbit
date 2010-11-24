@@ -15,6 +15,7 @@ package
 			xml = new XML(File);
 			width = xml.width;
 			height = xml.height;			
+            FlxU.setWorldBounds(0,0,width,height);
 		}
 		
 		public function loadTilemap(Layer:XML, TileGraphic:Class):FlxTilemap
@@ -81,7 +82,7 @@ package
 			}
 			
 			array = tmpString.split("");
-			data = arrayToCSV(array, 40);
+			data = arrayToCSV(array, widthInTiles);
 			FlxG.log(data);
 			return new FlxTilemap().loadMap(data, InvisibleTiles);
 		}

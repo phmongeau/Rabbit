@@ -8,7 +8,7 @@ package
 		[Embed(source="data/tiles.png")] private var ImgTiles:Class;
 		[Embed(source="data/collidTiles.png")] private var CollideTiles:Class;
 		[Embed(source = 'data/map01.tmx', mimeType = "application/octet-stream")] private var EmbeddedTmx:Class;		
-		[Embed(source = 'data/levels/Level1.oel', mimeType = "application/octet-stream")] private var Level1:Class;
+		[Embed(source = 'data/levels/Level2.oel', mimeType = "application/octet-stream")] private var Level1:Class;
 		[Embed(source = 'data/levels/CollideMap1.txt', mimeType = "application/octet-stream")] private var CollideMap1:Class;
 
 		private var _level:OgmoTilemap;
@@ -17,9 +17,17 @@ package
 		public var _veggies:FlxGroup;
 		public var _marmottes:FlxGroup;
 		public var _player:FlxSprite;
+
+        private var darkness:FlxSprite;
+        //private var light:Light;
 		
 		override public function create():void
 		{
+            darkness = new FlxSprite();
+            darkness.createGraphic(FlxG.width, FlxG.height, 0xff000000);
+            darkness.scrollFactor = new FlxPoint(0,0);
+            darkness.blend = "multiply";
+
 			FlxG.mouse.hide();
 			FlxState.bgColor = 0xFF88AACC;
 
@@ -39,7 +47,14 @@ package
 
 			add(_collideMap);
 			add(_map);
+            add(darkness);
 		}
+
+        override public function render():void
+        {
+            darkness.fill(0xff333333);
+            super.render();
+        }
 
 		override public function update():void
 		{
@@ -63,6 +78,7 @@ package
 			for each(i in objects.carrot)
 			{
 				add(_veggies.add(new Carrot(i.@x, i.@y)));
+                add(new Light(i.@x, i.@y, darkness));
 			}
 		}
 
