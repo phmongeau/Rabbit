@@ -22,7 +22,7 @@ package
 		{
 			super.update();
 			if(FlxG.mouse.justPressed())
-				FlxG.state = new PlayState();
+				FlxG.switchState(new PlayState());
 		}
 	}
 }

@@ -25,7 +25,7 @@ package
             width = 30
 			offset.x = 10;
 			offset.y = 15;
-            FlxG.follow(this);
+            FlxG.camera.follow(this);
 		}
 		
 		override public function update():void
@@ -41,13 +41,14 @@ package
 			}
             if (FlxG.keys.justPressed("SPACE") && velocity.y == 0)
             {
+				FlxG.log("Jump!");
                 velocity.y -= jumpPower;
             }
 
             if (velocity.x > 0)
-                facing = 1;
-            else if(velocity.x < 0)
                 facing = 0;
+            else if(velocity.x < 0)
+                facing = 1;
 			
 			if (x < 0)
 			{

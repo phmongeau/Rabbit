@@ -9,6 +9,7 @@ package
 		public function Rabit()
 		{
 			super(640,480,MenuState,1);
+			forceDebugger = true;
 		}
 	}
 }

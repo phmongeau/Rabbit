@@ -19,12 +19,12 @@ package
             this.blend = "screen";
         }
 
-        override public function render():void
+        override public function draw():void
         {
             var screenXY:FlxPoint = getScreenXY();
 
-            darkness.draw(this, screenXY.x - this.width/2, screenXY.y - this.height/2);
-            super.render();
+            darkness.stamp(this, screenXY.x - this.width/2, screenXY.y - this.height/2);
+            super.draw();
         }
 
         override public function update():void
