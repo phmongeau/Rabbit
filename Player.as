@@ -7,7 +7,7 @@ package
 		[Embed(source = 'data/rabitSS.png')] private var ImgPlayer:Class;
 		
 		private var moveSpeed:Number;
-        public var jumpPower:int;
+		public var jumpPower:int;
 
 		public function Player(X:int, Y:int):void
 		{
@@ -17,15 +17,15 @@ package
 			moveSpeed =  100;
 			drag.x = 200;
 			maxVelocity.x = moveSpeed;
-            acceleration.y = 500; //Gravity
-            jumpPower = 300;
-            maxVelocity.y = jumpPower * 10;
-            health = 10;
-            height = 52
-            width = 30
+			acceleration.y = 500; //Gravity
+			jumpPower = 300;
+			maxVelocity.y = jumpPower * 10;
+			health = 10;
+			height = 52
+			width = 30
 			offset.x = 10;
 			offset.y = 15;
-            FlxG.camera.follow(this);
+			FlxG.camera.follow(this);
 		}
 		
 		override public function update():void
@@ -39,16 +39,16 @@ package
 			{
 				velocity.x += moveSpeed * FlxG.elapsed * 3;
 			}
-            if (FlxG.keys.justPressed("SPACE") && velocity.y == 0)
-            {
+			if (FlxG.keys.justPressed("SPACE") && velocity.y == 0)
+			{
 				FlxG.log("Jump!");
-                velocity.y -= jumpPower;
-            }
+				velocity.y -= jumpPower;
+			}
 
-            if (velocity.x > 0)
-                facing = 0;
-            else if(velocity.x < 0)
-                facing = 1;
+			if (velocity.x > 0)
+				facing = 0;
+			else if(velocity.x < 0)
+				facing = 1;
 			
 			if (x < 0)
 			{
@@ -63,12 +63,12 @@ package
 			super.update();
 		}
 
-        public function hit():void
-        {
-            FlxG.log('Player');
-            velocity.x *= -1;
-            velocity.y *= -1;
-       }
+		public function hit():void
+		{
+			FlxG.log('Player');
+			velocity.x *= -1;
+			velocity.y *= -1;
+	   }
 	}
 }
 

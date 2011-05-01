@@ -18,15 +18,15 @@ package
 		public var _marmottes:FlxGroup;
 		public var _player:FlxSprite;
 
-        private var darkness:FlxSprite;
-        //private var light:Light;
+		private var darkness:FlxSprite;
+		//private var light:Light;
 		
 		override public function create():void
 		{
-            darkness = new FlxSprite();
-            darkness.makeGraphic(FlxG.width, FlxG.height, 0xff000000);
-            darkness.scrollFactor = new FlxPoint(0,0);
-            darkness.blend = "multiply";
+			darkness = new FlxSprite();
+			darkness.makeGraphic(FlxG.width, FlxG.height, 0xff000000);
+			darkness.scrollFactor = new FlxPoint(0,0);
+			darkness.blend = "multiply";
 
 			FlxG.mouse.hide();
 			FlxG.bgColor = 0xFF88AACC;
@@ -48,7 +48,7 @@ package
 
 			//add(_collideMap);
 			add(_map);
-            add(darkness);
+			add(darkness);
 		}
 
 		override public function draw():void
@@ -80,7 +80,7 @@ package
 			for each(i in objects.carrot)
 			{
 				add(_veggies.add(new Carrot(i.@x, i.@y)));
-                add(new Light(i.@x, i.@y, darkness));
+				add(new Light(i.@x, i.@y, darkness));
 			}
 		}
 
